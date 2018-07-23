@@ -16,6 +16,17 @@ int main(void) {
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
   	#endif
+  	
+  	int a, b, c, d;
+  	
+  	cin >> a >> b >> c >> d;
+  	
+  	int x1 = a - c;
+  	int x2 = b - c;
+  	int k = d - c - x1 - x2;
+  	
+  	if(x1 < 0 || x2 < 0 || k <= 0) cout << -1 << endl;
+  	else cout << k << endl;
 	
 	
 	
