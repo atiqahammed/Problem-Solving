@@ -67,8 +67,9 @@ int main(void) {
 			//cout << myPeople[i].start << " " << myPeople[i].end << endl;
 			//test
 			
-			if(myPeople[j].end > currentTime) {
-				cout << currentTime  << " ";
+			if(myPeople[j].end >= currentTime) {
+				
+				cout << max(currentTime, myPeople[j].start)  << " ";
 				
 				if(currentTime >= myPeople[j].start)
 					currentTime = currentTime + 1;
