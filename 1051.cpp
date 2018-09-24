@@ -54,7 +54,7 @@ int main(void) {
 			cout << s << endl;
 		} 
 		else {
-			cout << "paini" << endl;
+		//	cout << "paini" << endl;
 			
 			int missingCount = 0;
 			if(!gotDigit(s)) missingCount++;
@@ -62,11 +62,102 @@ int main(void) {
 			if(!gotUppercaseLetter(s)) missingCount++;
 			
 			if(missingCount == 1) {
-				cout << missingCount << endl;
+				//cout << missingCount << endl;
+				int digitCount = 0;
+				int uppreCaseLetterCount = 0;
+				int lowerCaseLetterCount = 0;
+				
+				for(int i = 0; i < s.length(); i++) {
+					if(s[i] <= 'z' && s[i] >= 'a') lowerCaseLetterCount++;
+					if(s[i] <= 'Z' && s[i] >= 'A') uppreCaseLetterCount++;
+					if(s[i] <= '9' && s[i] >= '0') digitCount++;
+				}
+				
+				if(digitCount == 0 && lowerCaseLetterCount > 1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= 'z' && s[i] >= 'a') {
+							s[i] = '0';
+							break;
+						}
+					}
+					
+				}
+				else if(digitCount== 0 && uppreCaseLetterCount >1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= 'Z' && s[i] >= 'A') {
+							s[i] = '0';
+							break;
+						}
+					}
+				}
+				
+				else if(lowerCaseLetterCount == 0 && uppreCaseLetterCount > 1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= 'Z' && s[i] >= 'A') {
+							s[i] = 'a';
+							break;
+						}
+					}
+				}
+				
+				else if(lowerCaseLetterCount == 0 && digitCount > 1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= '9' && s[i] >= '0') {
+							s[i] = 'a';
+							break;
+						}
+					}
+				}
+				
+				else if(uppreCaseLetterCount == 0 && digitCount  > 1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= '9' && s[i] >= '0') {
+							s[i] = 'A';
+							break;
+						}
+					}
+				} 
+				else if(uppreCaseLetterCount == 0 && lowerCaseLetterCount > 1) {
+					for(int i = 0; i < s.length(); i++) {
+						if(s[i] <= 'z' && s[i] >= 'a') {
+							s[i] = 'A';
+							break;
+						}
+					}
+				}
+				
+				cout << s << endl;
 				
 			} 
 			
 			else {
+				
+				int digitCount = 0;
+				int uppreCaseLetterCount = 0;
+				int lowerCaseLetterCount = 0;
+				
+				for(int i = 0; i < s.length(); i++) {
+					if(s[i] <= 'z' && s[i] >= 'a') lowerCaseLetterCount++;
+					if(s[i] <= 'Z' && s[i] >= 'A') uppreCaseLetterCount++;
+					if(s[i] <= '9' && s[i] >= '0') digitCount++;
+				}
+				
+				if(lowerCaseLetterCount > 0) {
+					s[0] = 'A';
+					s[1] = '0';
+				}
+				
+				else if(uppreCaseLetterCount > 0) {
+					s[0] = 'a';
+					s[1] = '0';
+				}
+				
+				else if(digitCount > 0) {
+					s[0] = 'A';
+					s[1] = 'a';
+				}
+				
+				cout << s << endl;
 				
 			}
 			
