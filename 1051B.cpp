@@ -18,6 +18,17 @@ int main(void) {
   	#endif
 	
 	
+	ll a, b;
+	cin >> a >> b;
+	ll k, l;
+	k = max(a, b);
+	l = min(a, b);
+	
+	cout << "YES" << endl;
+	
+	for(ll i = l; i <= k; i+=2)
+		cout << i << " " << i + 1<< endl;
+		//printf("%lld\n", i);
 	
 	
 	
