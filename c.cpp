@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define test cout << "test" << endl;
+
 #define myinarr int arr[n];
 
 using namespace std;
@@ -8,24 +8,12 @@ using namespace std;
 typedef long long ll;
 
 
-//ll n;
+ll n;
 
-
-
-
-bool isPalindrom(string s) {
-	
-	int l = s.length();
-	
-	for(int i=0;i < l ;i++)
-        if(s[i] != s[l-i-1])
-            return false;
-   
-	return true;
-}
-
-
-
+struct XY{
+  int x;
+  int y;
+};
 
 
 int main(void) {
@@ -33,121 +21,120 @@ int main(void) {
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
   	#endif
-	
-	//ll count = 0;
-	
-	
-	
-	int t;
-	cin >> t;
-	
-	
-	for(int tt = 0; tt < t; tt++) {
-		
-		cout << "Case " << tt+1 << ":"<< endl;
-		
-		int n, q;
-		cin >> n >> q;
-		map<int , bool> ok;
-		
-		
-		vector<int> x, y;
-		
-		for(int i = 0; i < n; i++) {
-			
-			int t1, t2;
-			cin >> t1 >> t2;
-			
-			x.push_back(t1);
-			y.push_back(t2);
-		
-			
-		
-		
-		}
-		
-		
-		
-		vector<int> xx, yy;
-		
-		for(int i = 0; i < n; i++) {
-			for(int j = i; j < n; j++) {
-				//cout << i << " " << j << endl;
-				
-				int x1 = x[i]+x[j] + y[i] + y[j];
-				int y1 = x[i]+x[j] - y[i] - y[j];
-				
-				if(!ok[x1]) {
-					xx.push_back(x1);
-					yy.push_back(y1);
-					ok[x1] = true;
-				}
-				
-				
-			}
-		}
-		
-		/*
-		for(int i = 0; i < xx.size(); i++) {
-			cout << xx[i] << " " << yy[i] << endl;
-		}*/
-		
-		
-		
-		
-		
-		for(int i = 0; i < q; i++) {
-			int a1, b1, c1, d1;
-			cin >> a1 >> b1 >> c1 >> d1;
-			
-			int minix = min(a1, c1);
-			int maxix = max(a1, c1);
-			
-			int miniy = min(b1, d1);
-			int maxiy = max(b1, d1);
-			
-			int count = 0;
-			
-			for(int j = 0; j < xx.size(); j++) {
-				if(minix <= xx[j] && xx[j] <= maxix && yy[j] <= maxiy && miniy <= yy[j]) count++;
-			}
-			
-			cout << count << endl;
-			
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
-	
-	
-	
-	
 
-	
-	
+    XY direction[4];// = {'l','u','r','d'};
+    direction[0].x = 0;
+    direction[0].y = -1;
+    
+    direction[1].x = -1;
+    direction[1].y = 0;
+    
+    direction[2].x = 0;
+    direction[2].y = 1;
+    
+    direction[3].x = 1;
+    direction[3].y = 0;
+    
+    
+    int count = 0;
+    
+    int n, m;
+    cin >> n >> m;
+    string s[n];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> s[i];
+    }
+    
+    int sx, sy;
+    
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            if(s[i][j] == 'S') {
+                sx = i;
+                sy = j;
+            }
+        }
+    }
+    
+    //cout << sx << " " << sy << endl;
+    
+    string move;
+    cin >> move;
+    
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++) {
+            for(int k = 0; k < 4; k++) {
+                for(int l = 0; l < 4; l++) {
+                    if(i != j && i != k && i != l && j != k && j != l && k != l) {
+                        
+                       // count++;
+                        
+                        int cx = sx, cy = sy;
+                        
+                        
+                        //cout << cx << " " << cy << endl;
+                        //cout << i << j << k << l << endl;
+                        for(int ii = 0; ii < move.length(); ii++) {
+                            int INDEX = move[ii] - '0';
+                            XY cDir;
+                            if(i == INDEX) {
+                            	cDir = direction[0];
+							}
+							
+							else if(j == INDEX) {
+								cDir = direction[1];
+							}
+							
+							else if(k == INDEX) {
+								cDir = direction[2];
+							}
+							
+							else if(l == INDEX) {
+								cDir = direction[3];
+							}
+                            
+							//cout << INDEX;
+							
+							// = direction[move[ii] - '0'];
+                            cx += cDir.x;
+                            cy += cDir.y;
+                            
+                           // cout << cx << " " << cy << endl;
+                            
+                            if(cx < 0 || cy < 0 || cx >= n || cy >= m) {
+                               //cout << "out" << endl;
+                                break;
+                            }
+                            
+                            if(s[cx][cy] == '#') {
+                               // cout << "obs" << endl;
+                                break;
+                            }
+                            
+                            if(s[cx][cy] == 'E') {
+                            	//cout << "paichi" << endl;
+                                count++;
+                                break;
+                            }
+                            
+                            
+                        }
+                        
+                        //cout << endl;
+                        //cout << "------------------------------------" << endl;
+                        
+                        //cout << i << j << k << l << endl;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    cout << count << endl;
+    
+    
+    
     return 0;
 }
