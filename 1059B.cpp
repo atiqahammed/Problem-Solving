@@ -28,6 +28,9 @@ int main(void) {
 	int x3[7] = {-1, -1, -1, 0, 1, 1, 1};
 	int y3[7] = {0, 1, 2, 2, 0, 1, 2};
 	
+	int x4[7] = {-1, -1, -1, 0, 1, 1, 1};
+	int y4[7] = {-2, -1, 0, -2, -2, -1, 0};
+	
 	
 	bool flag[1010][1010];
 	
@@ -55,7 +58,7 @@ int main(void) {
 			//cout << ch[i][j];
 			//cout << i << "=" << j << endl;
 			bool test = false;
-			bool t1 = true, t2 = true, t3 = true;
+			bool t1 = true, t2 = true, t3 = true, t4 = true;
 			
 			
 		//	if(i == 3) cout << "test" << endl;
@@ -137,18 +140,39 @@ int main(void) {
 						
 								flag[tempx][tempy] = true;
 							}
-						}
+						} else {
+							
+							for(int k = 0; k < 7; k++) {
+								int tempx = cx + x4[k];
+								int tempy = cy + y4[k];
+					
+					
+								if(ch[tempx][tempy] != '#') {
+									t4 = false;
+									break;
+								}
+					
+							}	
+					
+							if(t4) {
+								flag[i][j] = true;
+								for(int k = 0; k < 7; k++) {
+									int tempx = cx + x4[k];
+									int tempy = cy + y4[k];
 						
+									flag[tempx][tempy] = true;
+								}
+							
+							}
+						
+						}
 					}
-					
-					
-					
 					
 				}
 				
 			}
 			
-			if(!(t1 || t2 || t3)) {
+			if(!(t1 || t2 || t3 || t4)) {
 				//cout << i << " " << j << endl;
 				
 				cout << "NO" << endl;
@@ -160,17 +184,6 @@ int main(void) {
 	
 	
 	cout << "YES" << endl;
-	
-	/*for(int i = 0; i < n; i++) {
-		for(int j = 0; j < m; j++) {
-			cout << ch[i][j];
-		}
-		cout << endl;
-	}*/
-	
-	
-	
-
 	
 	
     return 0;
