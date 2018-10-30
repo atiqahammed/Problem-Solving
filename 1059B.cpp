@@ -48,7 +48,7 @@ int main(void) {
 		//cout << endl;
 	}
 	
-	cout << n << " : " << m << endl;
+	//cout << n << " : " << m << endl;
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < m; j++) {
@@ -58,7 +58,7 @@ int main(void) {
 			bool t1 = true, t2 = true, t3 = true;
 			
 			
-			if(i == 3) cout << "test" << endl;
+		//	if(i == 3) cout << "test" << endl;
 			
 			if(ch[i][j] == '#' && flag[i][j] == false) {
 				int cx = i, cy = j;
@@ -89,9 +89,19 @@ int main(void) {
 					for(int k = 0; k < 7; k++) {
 						int tempx = cx + x2[k];
 						int tempy = cy + y2[k];
-					
+						
+						/*
+						if(i == 1 && j == 1) {
+							//cout << "help" << endl;
+							//cout << tempx  << "   /// " << tempy << endl;
+						}
+						*/
+						
 					
 						if(ch[tempx][tempy] != '#') {
+							//cout << "ll" << endl;
+							//cout << tempx << "  .. " << tempy << endl;
+							//cout << cx << " " << cy << endl;
 							t2 = false;
 							break;
 						}
@@ -101,8 +111,8 @@ int main(void) {
 					if(t2) {
 						flag[i][j] = true;
 						for(int k = 0; k < 7; k++) {
-							int tempx = cx + x1[k];
-							int tempy = cy + y1[k];
+							int tempx = cx + x2[k];
+							int tempy = cy + y2[k];
 						
 							flag[tempx][tempy] = true;
 						}
@@ -122,8 +132,8 @@ int main(void) {
 						if(t3) {
 							flag[i][j] = true;
 							for(int k = 0; k < 7; k++) {
-								int tempx = cx + x1[k];
-								int tempy = cy + y1[k];
+								int tempx = cx + x3[k];
+								int tempy = cy + y3[k];
 						
 								flag[tempx][tempy] = true;
 							}
@@ -139,7 +149,7 @@ int main(void) {
 			}
 			
 			if(!(t1 || t2 || t3)) {
-				cout << i << " " << j << endl;
+				//cout << i << " " << j << endl;
 				
 				cout << "NO" << endl;
 				return 0;
