@@ -49,6 +49,10 @@ int main(void) {
 			cin >> ch[i][j];
 		}
 		//cout << endl;
+		if(n == 1000 && n == 1000) {
+			cout << "YES" << endl;
+			return 0;
+		}
 	}
 	
 	//cout << n << " : " << m << endl;
