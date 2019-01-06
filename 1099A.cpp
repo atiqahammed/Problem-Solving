@@ -17,34 +17,25 @@ int main(void) {
     freopen("output.txt","w",stdout);
   	#endif
 	
-	int w, h;
-	cin >> w >> h;
 	
-	int u1, u2, d1, d2;
-	cin >> u1 >> d1 >> u2 >> d2;
+	ll n;
+	cin >> n;
 	
-	while(h >= 0) {
-		w += h;
+	ll a = 0, b = 0;
+	int k = 0;
+	
+	while(1) {
+		if(k%2) a++;
+		else b++;
+		
+		if(a * b >= n) break;
 		
 		
-		if(h == d1) {
-			w -= u1;
-			if(w < 0) w = 0;
-		}
-		
-		if(h == d2) {
-			w -= u2;
-			if(w < 0) w = 0;
-		}
-		
-		h--;
+		k++;
 	}
 	
-	cout << w << endl;
+	cout << a + b << endl;
 	
-	
-	
-
 	
 	
     return 0;
